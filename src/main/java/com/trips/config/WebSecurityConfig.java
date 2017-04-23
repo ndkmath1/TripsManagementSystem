@@ -15,7 +15,7 @@ import com.trips.service.impl.AccountServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-@Transactional
+//@Transactional
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired

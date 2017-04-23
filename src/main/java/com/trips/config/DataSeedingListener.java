@@ -24,7 +24,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 	private AccountRepository accountRepository;
 
 	@Override
-	@Transactional
+	@Transactional(value = "jpaTransactionManager")
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
 		//insertAccount("ndkmath1@gmail.com", "123456");
 	}

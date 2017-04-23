@@ -27,12 +27,11 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @ComponentScan("com.trips")
-@EnableJpaRepositories(basePackages = "com.trips.repository",
-	considerNestedRepositories = true
-//	,
-//	entityManagerFactoryRef = "entityManager",
-//	transactionManagerRef = "transactionManager"
-	)
+@EnableJpaRepositories(basePackages = "com.trips.repository", considerNestedRepositories = true
+// ,
+// entityManagerFactoryRef = "entityManager",
+// transactionManagerRef = "transactionManager"
+)
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
 public class ApplicationContextConfig {
@@ -58,67 +57,63 @@ public class ApplicationContextConfig {
 		System.out.println("## dataSource: " + dataSource);
 		return dataSource;
 	}
-	
-	   @Autowired
-	   @Bean(name = "sessionFactory")
-	   public SessionFactory getSessionFactory(DataSource dataSource) throws Exception {
-	       System.out.println("## getSessionFactory...");
-	       try {
-	           Properties properties = new Properties();
-	           properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
-	           properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-	           properties.put("current_session_context_class", env.getProperty("current_session_context_class"));
-	           LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
-	           factoryBean.setPackagesToScan(new String[] { "com.trips.entity" });
-	           factoryBean.setDataSource(dataSource);
-	           factoryBean.setHibernateProperties(properties);
-	           factoryBean.afterPropertiesSet();
-	           SessionFactory sf = factoryBean.getObject();
-	           System.out.println("## getSessionFactory: " + sf);
-	           return sf;
-	       } catch (Exception e) {
-	           System.out.println("Error getSessionFactory: " + e);
-	           e.printStackTrace();
-	           throw e;
-	       }
-	 
-	   }
-	 
-//	   // Hibernate Transaction Manager
-//	   @Autowired
-//	   @Bean(name = "transactionManager")
-//	   public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
-//	       HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
-//	       return transactionManager;
-//	   }
-	   
-	   @Bean
-	   public DataSource dataSource() {
-	     EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-	     return builder.setType(EmbeddedDatabaseType.HSQL).build();
-	   }
-	   
-	   @Bean
-	   public EntityManagerFactory entityManagerFactory() {
 
-	     HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-	     vendorAdapter.setGenerateDdl(true);
+	@Autowired
+	@Bean(name = "sessionFactory")
+	public SessionFactory getSessionFactory(DataSource dataSource) throws Exception {
+		System.out.println("## getSessionFactory...");
+		try {
+			Properties properties = new Properties();
+			properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+			properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+			properties.put("current_session_context_class", env.getProperty("current_session_context_class"));
+			LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
+			factoryBean.setPackagesToScan(new String[] { "com.trips.entity" });
+			factoryBean.setDataSource(dataSource);
+			factoryBean.setHibernateProperties(properties);
+			factoryBean.afterPropertiesSet();
+			SessionFactory sf = factoryBean.getObject();
+			System.out.println("## getSessionFactory: " + sf);
+			return sf;
+		} catch (Exception e) {
+			System.out.println("Error getSessionFactory: " + e);
+			e.printStackTrace();
+			throw e;
+		}
 
-	     LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-	     factory.setJpaVendorAdapter(vendorAdapter);
-	     factory.setPackagesToScan("com.trips.entity");
-	     factory.setDataSource(getDataSource());
-	     factory.afterPropertiesSet();
+	}
 
-	     return factory.getObject();
-	   }
+	@Autowired
+	@Bean(name = "hibernateTransactionManager")
+	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
+		return transactionManager;
+	}
 
-	   @Bean
-	   public PlatformTransactionManager transactionManager() {
+//	@Bean
+//	public DataSource dataSource() {
+//		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+//		return builder.setType(EmbeddedDatabaseType.HSQL).build();
+//	}
 
-	     JpaTransactionManager txManager = new JpaTransactionManager();
-	     txManager.setEntityManagerFactory(entityManagerFactory());
-	     return txManager;
-	   }
+	@Bean
+	public EntityManagerFactory entityManagerFactory() {
+		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		vendorAdapter.setGenerateDdl(true);
+		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+		factory.setJpaVendorAdapter(vendorAdapter);
+		factory.setPackagesToScan("com.trips.entity");
+		factory.setDataSource(getDataSource());
+		factory.afterPropertiesSet();
+		return factory.getObject();
+	}
+
+	@Bean(name = "jpaTransactionManager")
+	public PlatformTransactionManager transactionManager() {
+
+		JpaTransactionManager txManager = new JpaTransactionManager();
+		txManager.setEntityManagerFactory(entityManagerFactory());
+		return txManager;
+	}
 
 }
