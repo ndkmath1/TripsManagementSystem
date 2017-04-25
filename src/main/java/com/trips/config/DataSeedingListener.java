@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trips.entity.Account;
-import com.trips.repository.AccountRepository;
-import com.trips.service.impl.AccountServiceImpl;
+import com.trips.repository.UserRepository;
+import com.trips.service.impl.UserServiceImpl;
 
 @Component
 public class DataSeedingListener implements ApplicationListener<ContextRefreshedEvent> {
@@ -21,7 +21,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	private AccountRepository accountRepository;
+	private UserRepository accountRepository;
 
 	@Override
 	@Transactional(value = "jpaTransactionManager")

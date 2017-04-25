@@ -1,11 +1,13 @@
 package com.trips.entity;
-// Generated Apr 19, 2017 10:50:05 PM by Hibernate Tools 4.3.5.Final
+// Generated Apr 24, 2017 11:02:11 PM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,12 +21,11 @@ import javax.persistence.Table;
 @Table(name = "car", catalog = "project_2")
 public class Car implements java.io.Serializable {
 
-	private int carId;
+	private Integer carId;
 	private Driver driver;
 	private String carType;
 	private Integer numSeatType1;
 	private Integer numSeatType2;
-	private Integer numSeatType3;
 	private String licensePlate;
 	private Set<ScheduleControl> scheduleControls = new HashSet<ScheduleControl>(0);
 	private Set<WeekSchedule> weekSchedules = new HashSet<WeekSchedule>(0);
@@ -33,21 +34,17 @@ public class Car implements java.io.Serializable {
 	public Car() {
 	}
 
-	public Car(int carId, Driver driver, String licensePlate) {
-		this.carId = carId;
+	public Car(Driver driver, String licensePlate) {
 		this.driver = driver;
 		this.licensePlate = licensePlate;
 	}
 
-	public Car(int carId, Driver driver, String carType, Integer numSeatType1, Integer numSeatType2,
-			Integer numSeatType3, String licensePlate, Set<ScheduleControl> scheduleControls,
-			Set<WeekSchedule> weekSchedules, Set<Bill> bills) {
-		this.carId = carId;
+	public Car(Driver driver, String carType, Integer numSeatType1, Integer numSeatType2, String licensePlate,
+			Set<ScheduleControl> scheduleControls, Set<WeekSchedule> weekSchedules, Set<Bill> bills) {
 		this.driver = driver;
 		this.carType = carType;
 		this.numSeatType1 = numSeatType1;
 		this.numSeatType2 = numSeatType2;
-		this.numSeatType3 = numSeatType3;
 		this.licensePlate = licensePlate;
 		this.scheduleControls = scheduleControls;
 		this.weekSchedules = weekSchedules;
@@ -55,13 +52,14 @@ public class Car implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "car_id", unique = true, nullable = false)
-	public int getCarId() {
+	public Integer getCarId() {
 		return this.carId;
 	}
 
-	public void setCarId(int carId) {
+	public void setCarId(Integer carId) {
 		this.carId = carId;
 	}
 
@@ -100,15 +98,6 @@ public class Car implements java.io.Serializable {
 
 	public void setNumSeatType2(Integer numSeatType2) {
 		this.numSeatType2 = numSeatType2;
-	}
-
-	@Column(name = "num_seat_type_3")
-	public Integer getNumSeatType3() {
-		return this.numSeatType3;
-	}
-
-	public void setNumSeatType3(Integer numSeatType3) {
-		this.numSeatType3 = numSeatType3;
 	}
 
 	@Column(name = "license_plate", nullable = false, length = 45)

@@ -8,7 +8,7 @@ public class LoginController {
 	
 	@GetMapping("/admin")
 	public String admin() {
-		return "admin/account/index";
+		return "admin/index";
 	}
 	
 	@GetMapping("/accessDenied")
