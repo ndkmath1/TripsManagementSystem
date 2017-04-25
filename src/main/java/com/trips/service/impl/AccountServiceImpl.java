@@ -3,8 +3,6 @@ package com.trips.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,19 +44,5 @@ public class AccountServiceImpl implements AccountService {
 	public void delete(int id) {
 		accountRepository.delete(id);
 	}
-
-	@Override
-	public String getNameOfUser() {
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String nameOfUser;
-		if (principal instanceof CustomUser) {
-		    nameOfUser = ((CustomUser) principal).getName();
-		} else {
-		    nameOfUser = principal.toString();
-		}
-		return nameOfUser;
-	}
-	
-	
 
 }

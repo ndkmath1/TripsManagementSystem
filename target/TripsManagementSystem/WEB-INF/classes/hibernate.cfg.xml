@@ -12,14 +12,14 @@
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.search.autoregister_listeners">true</property>
         <property name="hibernate.validator.apply_to_ddl">false</property>
-        <mapping class="com.trips.domain.Station" />
-        <mapping class="com.trips.domain.Route" />
-        <mapping class="com.trips.domain.Car" />
-        <mapping class="com.trips.domain.WeekSchedule" />
-        <mapping class="com.trips.domain.ScheduleControl" />
-        <mapping class="com.trips.domain.Bill" />
-        <mapping class="com.trips.domain.Driver" />
-        <mapping class="com.trips.domain.StopPoint" />
-        <mapping class="com.trips.domain.Account" />
+        <mapping class="com.trips.entity.StopPoint" />
+        <mapping class="com.trips.entity.ScheduleControl" />
+        <mapping class="com.trips.entity.Car" />
+        <mapping class="com.trips.entity.Bill" />
+        <mapping class="com.trips.entity.Route" />
+        <mapping class="com.trips.entity.WeekSchedule" />
+        <mapping class="com.trips.entity.Account" />
+        <mapping class="com.trips.entity.Station" />
+        <mapping class="com.trips.entity.Driver" />
     </session-factory>
 </hibernate-configuration>

@@ -43,9 +43,10 @@ $(function() {
 								nhập hoặc mật khẩu không đúng.
 							</div>
 						</c:if>
+						<c:url value="/login" var="loginUrl"/>
 						<form class="form-horizontal" role="form" method="POST"
-							action="${pageContext.request.contextPath}/j_spring_security_check">
-
+							action="${loginUrl}">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<div class="form-group">
 								<label class="col-md-4 control-label">Username</label>
 								<div class="col-md-6">

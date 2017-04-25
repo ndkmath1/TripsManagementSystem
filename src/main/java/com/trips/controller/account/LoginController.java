@@ -20,9 +20,7 @@ public class LoginController {
 	private AccountService accountService;
 	
 	@GetMapping("/admin")
-	public ModelAndView admin(HttpServletRequest req) {
-		HttpSession session = req.getSession(true);
-		session.setAttribute("nameOfUser", accountService.getNameOfUser());
+	public ModelAndView admin() {
 		return new ModelAndView("forward:/admin/account/list");
 	}
 	
