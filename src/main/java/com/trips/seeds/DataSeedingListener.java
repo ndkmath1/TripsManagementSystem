@@ -1,7 +1,4 @@
-package com.trips.config;
-
-import java.util.Iterator;
-import java.util.List;
+package com.trips.seeds;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;

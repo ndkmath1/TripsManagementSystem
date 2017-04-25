@@ -29,6 +29,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 
+	/**
+	 * Migrate from spring 3 to spring 4
+	 * attribute default value changed from /j_spring_security_check to POST /login
+	 * from /j_spring_security_logout to /logout
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
@@ -36,13 +41,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/", "/login").permitAll();
 		http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
-		http.authorizeRequests().and().formLogin().loginProcessingUrl("/j_spring_security_check")											// URL
+		http.authorizeRequests().and().formLogin()
 				.loginPage("/login")
 				.defaultSuccessUrl("/admin")
 				.failureUrl("/login?error=true")
 				.usernameParameter("username")
 				.passwordParameter("password")
-				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
+				.and().logout().logoutSuccessUrl("/");
 
 		// http.authorizeRequests().antMatchers("/login",
 		// "/").permitAll().antMatchers("/admin/**").hasRole("ADMIN")
