@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="top-nav" class="shadow">
     <div class="pull-left">
         <a href="javascript:void(0)" class="site-title">
@@ -17,7 +18,7 @@
         <div class="admin-name">
             <img class="img-circle" src="${pageContext.request.contextPath}/resources/images/profile.jpg"
                  alt="null">
-            <span>John Doe <i class="glyphicon glyphicon-chevron-down" style="font-size: 10px;"></i></span>
+            <span><%= session.getAttribute("nameOfUser") %> <i class="glyphicon glyphicon-chevron-down" style="font-size: 10px;"></i></span>
         </div>
         <ul class="admin-content shadow">
             <li>
@@ -51,7 +52,7 @@
     </div>
 </div>
 
-<div id="left-nav" class="right-nav-shadow">
+<div id="left-nav" class="right-nav-shadow" style="width: 0">
     <div class="profile">
         <div class="profile-pic">
             <img class="img-circle profile-image" src="${pageContext.request.contextPath}/resources/images/profile.jpg"
@@ -59,20 +60,22 @@
         </div>
         <div class="profile-info">
             <span>Welcome,</span>
-            <h2>John Doe</h2>
+            <h2>${sessionScope.nameOfUser}</h2>
         </div>
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     </div>
     <div style="clear: both;"></div>
     <div id="left-nav-content">
         <ul>
-            <li class="list-active">
+        	<!-- <li class="list-active"> -->
+            <li>
                 <div class="left-nav-content-main">
                     <i class="glyphicon glyphicon-cog fa"></i>
                     Quản lý tài khoản
                     <span class="glyphicon glyphicon-chevron-down gl-right"></span>
                 </div>
-                <ul class="child-menu" style="display: block">
+                <!--  <ul class="child-menu" styte="display: block"> -->
+                <ul class="child-menu">
                     <li class="current-page"><a href="index.html">Danh sách tài khoản</a></li>
                     <li><a href="javascript:void(0)">Thêm tài khoản</a></li>
                 </ul>

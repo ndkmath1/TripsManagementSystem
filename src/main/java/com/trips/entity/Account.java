@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 24, 2017 11:02:11 PM by Hibernate Tools 4.3.5.Final
+// Generated Apr 25, 2017 3:44:44 PM by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +18,10 @@ public class Account implements java.io.Serializable {
 	private Integer accountId;
 	private String email;
 	private String password;
-	private String role;
 	private String name;
+	private String phoneNumber;
+	private String address;
+	private String role;
 
 	public Account() {
 	}
@@ -29,11 +31,13 @@ public class Account implements java.io.Serializable {
 		this.password = password;
 	}
 
-	public Account(String email, String password, String role, String name) {
+	public Account(String email, String password, String name, String phoneNumber, String address, String role) {
 		this.email = email;
 		this.password = password;
-		this.role = role;
 		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.role = role;
 	}
 
 	@Id
@@ -66,15 +70,6 @@ public class Account implements java.io.Serializable {
 		this.password = password;
 	}
 
-	@Column(name = "role", length = 45)
-	public String getRole() {
-		return this.role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 	@Column(name = "name", length = 45)
 	public String getName() {
 		return this.name;
@@ -82,6 +77,33 @@ public class Account implements java.io.Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	@Column(name = "phone_number", length = 15)
+	public String getPhoneNumber() {
+		return this.phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	@Column(name = "address", length = 60)
+	public String getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	@Column(name = "role", length = 45)
+	public String getRole() {
+		return this.role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }

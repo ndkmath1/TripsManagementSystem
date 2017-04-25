@@ -1,4 +1,4 @@
-package com.trips.config;
+package com.trips.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

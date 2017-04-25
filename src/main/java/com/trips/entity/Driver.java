@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 24, 2017 11:02:11 PM by Hibernate Tools 4.3.5.Final
+// Generated Apr 25, 2017 3:44:44 PM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,20 +22,26 @@ public class Driver implements java.io.Serializable {
 	private Integer driverId;
 	private String driverName;
 	private String phoneNumber;
+	private Set<Bill> bills = new HashSet<Bill>(0);
 	private Set<ScheduleControl> scheduleControls = new HashSet<ScheduleControl>(0);
 	private Set<Car> cars = new HashSet<Car>(0);
-	private Set<Bill> bills = new HashSet<Bill>(0);
+	private Set<Bill> bills_1 = new HashSet<Bill>(0);
+	private Set<ScheduleControl> scheduleControls_1 = new HashSet<ScheduleControl>(0);
+	private Set<Car> cars_1 = new HashSet<Car>(0);
 
 	public Driver() {
 	}
 
-	public Driver(String driverName, String phoneNumber, Set<ScheduleControl> scheduleControls, Set<Car> cars,
-			Set<Bill> bills) {
+	public Driver(String driverName, String phoneNumber, Set<Bill> bills, Set<ScheduleControl> scheduleControls,
+			Set<Car> cars, Set<Bill> bills_1, Set<ScheduleControl> scheduleControls_1, Set<Car> cars_1) {
 		this.driverName = driverName;
 		this.phoneNumber = phoneNumber;
+		this.bills = bills;
 		this.scheduleControls = scheduleControls;
 		this.cars = cars;
-		this.bills = bills;
+		this.bills_1 = bills_1;
+		this.scheduleControls_1 = scheduleControls_1;
+		this.cars_1 = cars_1;
 	}
 
 	@Id
@@ -69,6 +75,15 @@ public class Driver implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "driver")
+	public Set<Bill> getBills() {
+		return this.bills;
+	}
+
+	public void setBills(Set<Bill> bills) {
+		this.bills = bills;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "driver")
 	public Set<ScheduleControl> getScheduleControls() {
 		return this.scheduleControls;
 	}
@@ -87,12 +102,30 @@ public class Driver implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "driver")
-	public Set<Bill> getBills() {
-		return this.bills;
+	public Set<Bill> getBills_1() {
+		return this.bills_1;
 	}
 
-	public void setBills(Set<Bill> bills) {
-		this.bills = bills;
+	public void setBills_1(Set<Bill> bills_1) {
+		this.bills_1 = bills_1;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "driver")
+	public Set<ScheduleControl> getScheduleControls_1() {
+		return this.scheduleControls_1;
+	}
+
+	public void setScheduleControls_1(Set<ScheduleControl> scheduleControls_1) {
+		this.scheduleControls_1 = scheduleControls_1;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "driver")
+	public Set<Car> getCars_1() {
+		return this.cars_1;
+	}
+
+	public void setCars_1(Set<Car> cars_1) {
+		this.cars_1 = cars_1;
 	}
 
 }

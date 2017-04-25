@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 24, 2017 11:02:11 PM by Hibernate Tools 4.3.5.Final
+// Generated Apr 25, 2017 3:44:44 PM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +22,7 @@ public class Station implements java.io.Serializable {
 	private Integer stationId;
 	private String stationName;
 	private Set<Bill> bills = new HashSet<Bill>(0);
+	private Set<Bill> bills_1 = new HashSet<Bill>(0);
 
 	public Station() {
 	}
@@ -30,9 +31,10 @@ public class Station implements java.io.Serializable {
 		this.stationName = stationName;
 	}
 
-	public Station(String stationName, Set<Bill> bills) {
+	public Station(String stationName, Set<Bill> bills, Set<Bill> bills_1) {
 		this.stationName = stationName;
 		this.bills = bills;
+		this.bills_1 = bills_1;
 	}
 
 	@Id
@@ -63,6 +65,15 @@ public class Station implements java.io.Serializable {
 
 	public void setBills(Set<Bill> bills) {
 		this.bills = bills;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "station")
+	public Set<Bill> getBills_1() {
+		return this.bills_1;
+	}
+
+	public void setBills_1(Set<Bill> bills_1) {
+		this.bills_1 = bills_1;
 	}
 
 }

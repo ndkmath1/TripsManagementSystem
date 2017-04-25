@@ -15,5 +15,7 @@ public interface AccountService {
     void save(Account contact);
 
     void delete(int id);
+    
+    String getNameOfUser();
 	
 }

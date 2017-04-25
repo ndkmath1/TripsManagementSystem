@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.trips.entity.Account;
 import com.trips.repository.UserRepository;
-import com.trips.service.impl.UserServiceImpl;
 
 @Component
 public class DataSeedingListener implements ApplicationListener<ContextRefreshedEvent> {

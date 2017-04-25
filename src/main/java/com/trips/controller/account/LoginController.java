@@ -1,14 +1,29 @@
 package com.trips.controller.account;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.trips.service.AccountService;
 
 @Controller
 public class LoginController {
 	
+	@Autowired
+	private AccountService accountService;
+	
 	@GetMapping("/admin")
-	public String admin() {
-		return "admin/index";
+	public ModelAndView admin(HttpServletRequest req) {
+		HttpSession session = req.getSession(true);
+		session.setAttribute("nameOfUser", accountService.getNameOfUser());
+		return new ModelAndView("forward:/admin/account/list");
 	}
 	
 	@GetMapping("/accessDenied")
@@ -17,8 +32,12 @@ public class LoginController {
 	}
 	
 	@GetMapping("/login")
-	public String getLogin() {
-		return "common/login";
+	public ModelAndView getLogin() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (!(auth instanceof AnonymousAuthenticationToken)) {
+		    return new ModelAndView("forward:/admin");
+		}
+		return new ModelAndView("common/login");
 	}
 	
 }
