@@ -50,7 +50,7 @@
 
 	<%@ include file="../common/topAndLeft.jsp"%>
 
-	<div id="main-content" style="margin-left: 0">
+	<div id="main-content">
 		<div class="center-content">
 			<div class="user-detail">
 				<div class="list shadow-all">

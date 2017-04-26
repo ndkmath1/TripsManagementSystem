@@ -54,6 +54,7 @@
 
 .navbar-custom li a, .navbar-custom .navbar-brand {
     color: #000 !important;
+    border-bottom: 2px solid #fff;
 }
 
 .navbar-nav-custom li a:hover, .navbar-nav-custom li.active a {

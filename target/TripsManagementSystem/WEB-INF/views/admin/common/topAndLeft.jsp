@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div id="top-nav" class="shadow">
 	<div class="pull-left">
 		<a href="javascript:void(0)" class="site-title"> <!--<div class="menu-container" onclick="myFunction(this)">-->
@@ -9,13 +10,12 @@
 			style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776;
 				open</span> <span>Trips Management System</span>
 		</a>
-		${pageContext.request.userPrincipal.name}
 	</div>
 	<div class="admin pull-right flex">
 		<div class="admin-name">
 			<img class="img-circle"
 				src="${pageContext.request.contextPath}/resources/images/profile.jpg"
-				alt="null"> <span>${sessionScope.nameOfUser} <i
+				alt="null"> <span>${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.name} <i
 				class="glyphicon glyphicon-chevron-down" style="font-size: 10px;"></i></span>
 		</div>
 
@@ -60,7 +60,7 @@
 		</div>
 		<div class="profile-info">
 			<span>Welcome,</span>
-			<h2>${sessionScope.nameOfUser}</h2>
+			<h2><sec:authentication property="principal.name" /></h2>
 		</div>
 		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	</div>

@@ -1,8 +1,5 @@
 package com.trips.controller.account;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -33,7 +30,7 @@ public class LoginController {
 	public ModelAndView getLogin() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
-		    return new ModelAndView("forward:/admin");
+		    return new ModelAndView("redirect:/admin");
 		}
 		return new ModelAndView("common/login");
 	}
