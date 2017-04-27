@@ -63,25 +63,26 @@ public class AccountController {
 	}
 
 	@PostMapping("/save")
-	public String save(Model model, @ModelAttribute("accountForm") @Validated Account account, BindingResult result, RedirectAttributes redirect) {
+	public String save(Model model, @ModelAttribute("accountForm") @Validated Account accountFromForm, BindingResult result, RedirectAttributes redirect) {
 		if (result.hasErrors()) {
-			return formAccount(model, account);
+			return formAccount(model, accountFromForm);
 		} else {
-			return "redirect:/admin/account";
+			accountService.saveAccountFromForm(accountFromForm);
+			redirect.addFlashAttribute("success", "Save account successfully");
+			return "redirect:/admin/account/list";
 		}
 	}
 
 	@GetMapping("/{id}/edit")
 	public String edit(@PathVariable int id, Model model) {
-		model.addAttribute("account", accountService.findOne(id));
-		return "/admin/account/form";
+		return formAccount(model, accountService.findAccountForm(id));
 	}
 
 	@GetMapping("/{id}/delete")
 	public String delete(@PathVariable int id, RedirectAttributes redirect) {
 		accountService.delete(id);
 		redirect.addFlashAttribute("success", "Delete account successfully!");
-		return "redirect:/admin/account";
+		return "redirect:/admin/account/list";
 	}
 
 	@GetMapping("/search")

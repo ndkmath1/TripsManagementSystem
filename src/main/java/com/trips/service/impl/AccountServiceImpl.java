@@ -13,10 +13,11 @@ import com.trips.service.AccountService;
 
 @Service
 @Transactional(value = "jpaTransactionManager")
-//  Shorter way, by default transaction is jpaTransactionManager, define by @Primary in ApplicationContextConfig class
-//@Transactional
+// Shorter way, by default transaction is jpaTransactionManager, define by
+// @Primary in ApplicationContextConfig class
+// @Transactional
 public class AccountServiceImpl implements AccountService {
-	
+
 	@Autowired
 	public AccountRepository accountRepository;
 
@@ -43,6 +44,20 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void delete(int id) {
 		accountRepository.delete(id);
+	}
+
+	@Override
+	public void saveAccountFromForm(com.trips.model.Account accountForm) {
+		Account account = new Account(accountForm.getEmail(), accountForm.getPassword(), accountForm.getName(),
+				accountForm.getPhoneNumber(), accountForm.getAddress(), null);
+		save(account);
+	}
+
+	@Override
+	public com.trips.model.Account findAccountForm(int id) {
+		Account account = accountRepository.findOne(id);
+		return new com.trips.model.Account(account.getAccountId() + "", account.getEmail(), null, null,
+				account.getName(), account.getPhoneNumber(), account.getAddress());
 	}
 
 }

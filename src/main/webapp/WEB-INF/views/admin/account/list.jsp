@@ -44,7 +44,11 @@
 <!-- fullscreen mode -->
 <script
 	src="${pageContext.request.contextPath}/resources/js/jquery.fullscreen-min.js"></script>
-
+<script>
+	$(function() {
+		$("#success-msg").delay(2000).slideUp(1000);
+	});
+</script>
 </head>
 <body>
 
@@ -77,9 +81,28 @@
 					</div>
 					<div class="clear"></div>
 					<hr>
+					<div>
+						<div class="pull-right">
+							<a href="<c:url value="/admin/account/create"/>"
+								class="btn btn-success"> <span
+								class="glyphicon glyphicon-plus"></span> Thêm tài khoản mới
+							</a>
+						</div>
+						<div class="pull-left">
+							<c:if test="${not empty success}">
+								<div class="alert alert-success alert-dismissable"
+									id="success-msg">
+									<a href="#" class="close" data-dismiss="alert"
+										aria-label="close">&times;</a> <strong>Success!</strong>
+									${success}
+								</div>
+							</c:if>
+						</div>
+					</div>
 					<table class="table table-hover tablesorter" id="myTable">
 						<thead>
 							<tr>
+							<!--  
 								<th><input type="checkbox" name="select-all" value="">
 									<div class="btn-group">
 										<button type="button" class="btn btn-default select-action">Action</button>
@@ -92,13 +115,14 @@
 											<li><a href="#">Delete</a></li>
 											<li><a href="#">More</a></li>
 										</ul>
-									</div></th>
+									</div></th>-->
 								<th>#</th>
 								<th>Email</th>
 								<th>Tên</th>
 								<th>Số điện thoại</th>
 								<th>Địa chỉ</th>
-
+								<th>Edit</th>
+								<th>Delete</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -118,6 +142,7 @@
 								<c:set var="count" value="0" scope="page" />
 								<c:forEach items="${requestScope.accountList}" var="account">
 									<tr>
+										<!--  
 										<td><input type="checkbox" name="selected[]" value="">
 											<div class="btn-group">
 												<button type="button" class="btn btn-default select-action">Action</button>
@@ -130,13 +155,15 @@
 													<li><a href="javascript:void(0)">Delete</a></li>
 													<li><a href="user-detail.html">View Detail</a></li>
 												</ul>
-											</div></td>
+											</div></td>-->
 										<c:set var="count" value="${count + 1}" scope="page" />
 										<td>${count}</td>
 										<td>${account.email}</td>
 										<td>${account.name}</td>
 										<td>${account.phoneNumber}</td>
 										<td>${account.address}</td>
+										<td><a href="<c:url value="/admin/account/${account.accountId}/edit"/>"><span class="glyphicon glyphicon-pencil"></span></a></td>
+										<td><a href="<c:url value="/admin/account/${account.accountId}/delete"/>"><span class="glyphicon glyphicon-trash"></span></a></td>
 									</tr>
 								</c:forEach>
 							</c:if>

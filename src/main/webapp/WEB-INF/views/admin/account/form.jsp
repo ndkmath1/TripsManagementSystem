@@ -63,7 +63,8 @@
 					</ul> -->
 					<h4>Thông tin tài khoản</h4>
 					<div class="account-info">
-						<form:form action="save" method="POST"
+						<c:url value="/admin/account/save" var="formUrl" />
+						<form:form action="${formUrl}" method="POST"
 							modelAttribute="accountForm" class="form-horizontal">
 							<form:hidden path="id" />
 							<spring:bind path="email">
