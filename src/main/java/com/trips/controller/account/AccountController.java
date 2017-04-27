@@ -49,10 +49,10 @@ public class AccountController {
 	private String formAccount(Model model, AccountForm account) {
 		model.addAttribute("accountForm", account);
 		if (account.getId() == null) {
-			System.out.println("### create new account");
+//			System.out.println("### create new account");
 			model.addAttribute("accountFormTitle", "Create new account");
 		} else {
-			System.out.println("### edit account");
+//			System.out.println("### edit account");
 			model.addAttribute("accountFormTitle", "Edit an account");
 		}
 		return "admin/account/form";

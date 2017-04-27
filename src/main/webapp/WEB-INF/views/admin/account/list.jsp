@@ -64,10 +64,10 @@
 							<span id="creator-subheader-item-count" class="badge-creator">100</span>
 						</div>
 						<div class="creator-subheader-controls">
-							<form>
+							<form action="<c:url value="/admin/account/search"/>" method="GET">
 								<div class="input-group">
 									<input id="search-text" type="text"
-										class="form-control clear-border-radius" name="searchText"
+										class="form-control clear-border-radius" name="q"
 										placeholder="Search...">
 									<div class="input-group-btn">
 										<button class="btn btn-default clear-border-radius"

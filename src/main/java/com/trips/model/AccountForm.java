@@ -3,8 +3,8 @@ package com.trips.model;
 import com.trips.entity.Account;
 
 public class AccountForm {
-	private String id;
-//	private Integer accountId;
+//	private String id;
+	private Integer id;
 	private String email;
 	private String password;
 	private String confirmPassword;
@@ -16,7 +16,7 @@ public class AccountForm {
 
 	}
 
-	public AccountForm(String id, String email, String password, String confirmPassword, String name,
+	public AccountForm(Integer id, String email, String password, String confirmPassword, String name,
 			String phoneNumber, String address) {
 		this.id = id;
 		this.email = email;
@@ -28,7 +28,7 @@ public class AccountForm {
 	}
 
 	public AccountForm(Account account) {
-		this.id = String.valueOf(account.getAccountId());
+		this.id = Integer.valueOf(account.getAccountId());
 		this.email = account.getEmail();
 		this.password = null;
 		this.confirmPassword = null;
@@ -45,11 +45,11 @@ public class AccountForm {
 //		this.accountId = accountId;
 //	}
 	
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

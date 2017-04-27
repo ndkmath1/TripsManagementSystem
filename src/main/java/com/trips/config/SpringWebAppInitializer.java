@@ -10,7 +10,7 @@ import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
- 
+
 public class SpringWebAppInitializer implements WebApplicationInitializer {
  
     @Override

@@ -3,6 +3,7 @@ package com.trips.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +20,10 @@ import com.trips.service.AccountService;
 public class AccountServiceImpl implements AccountService {
 
 	@Autowired
-	public AccountRepository accountRepository;
+	private AccountRepository accountRepository;
+
+	@Autowired
+	private PasswordEncoder pwdEncoder;
 
 	@Override
 	public Iterable<Account> findAll() {
@@ -48,15 +52,16 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public void saveAccountFromForm(AccountForm accountForm) {
-		//Integer accountId = accountForm.getAccountId();
-		Account newAccount = new Account(accountForm.getEmail(), accountForm.getPassword(), accountForm.getName(),
+		Integer accountId = accountForm.getId();
+		Account newAccount = new Account(accountForm.getEmail(), 
+				pwdEncoder.encode(accountForm.getPassword()), accountForm.getName(),
 				accountForm.getPhoneNumber(), accountForm.getAddress(), null);
-		if (accountForm.getId() != null) {
-			System.out.println("### account is not null");
-//			newAccount.setAccountId(accountId);
+		if (accountId != null) {
+//			System.out.println("### account is not null");
+			newAccount.setAccountId(accountId);
 			save(newAccount);
 		} else {
-			System.out.println("### account is null");
+//			System.out.println("### account is null");
 			save(newAccount);
 		}
 	}
