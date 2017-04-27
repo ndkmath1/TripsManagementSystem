@@ -1,8 +1,10 @@
 package com.trips.model;
 
-public class Account {
-	
+import com.trips.entity.Account;
+
+public class AccountForm {
 	private String id;
+//	private Integer accountId;
 	private String email;
 	private String password;
 	private String confirmPassword;
@@ -10,11 +12,13 @@ public class Account {
 	private String phoneNumber;
 	private String address;
 
-	public Account() {
-		
+	public AccountForm() {
+
 	}
-	
-	public Account(String id, String email, String password, String confirmPassword, String name, String phoneNumber, String address) {
+
+	public AccountForm(String id, String email, String password, String confirmPassword, String name,
+			String phoneNumber, String address) {
+		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.confirmPassword = confirmPassword;
@@ -22,6 +26,24 @@ public class Account {
 		this.phoneNumber = phoneNumber;
 		this.address = address;
 	}
+
+	public AccountForm(Account account) {
+		this.id = String.valueOf(account.getAccountId());
+		this.email = account.getEmail();
+		this.password = null;
+		this.confirmPassword = null;
+		this.name = account.getName();
+		this.phoneNumber = account.getPhoneNumber();
+		this.address = account.getAddress();
+	}
+
+//	public Integer getAccountId() {
+//		return accountId;
+//	}
+//
+//	public void setAccountId(Integer accountId) {
+//		this.accountId = accountId;
+//	}
 	
 	public String getId() {
 		return id;
@@ -30,7 +52,7 @@ public class Account {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -78,5 +100,5 @@ public class Account {
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
-	
+
 }

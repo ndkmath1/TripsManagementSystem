@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trips.entity.Account;
-import com.trips.model.CustomUser;
+import com.trips.model.AccountForm;
 import com.trips.repository.AccountRepository;
 import com.trips.service.AccountService;
 
@@ -47,17 +47,24 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public void saveAccountFromForm(com.trips.model.Account accountForm) {
-		Account account = new Account(accountForm.getEmail(), accountForm.getPassword(), accountForm.getName(),
+	public void saveAccountFromForm(AccountForm accountForm) {
+		//Integer accountId = accountForm.getAccountId();
+		Account newAccount = new Account(accountForm.getEmail(), accountForm.getPassword(), accountForm.getName(),
 				accountForm.getPhoneNumber(), accountForm.getAddress(), null);
-		save(account);
+		if (accountForm.getId() != null) {
+			System.out.println("### account is not null");
+//			newAccount.setAccountId(accountId);
+			save(newAccount);
+		} else {
+			System.out.println("### account is null");
+			save(newAccount);
+		}
 	}
 
 	@Override
-	public com.trips.model.Account findAccountForm(int id) {
+	public AccountForm findAccountForm(int id) {
 		Account account = accountRepository.findOne(id);
-		return new com.trips.model.Account(account.getAccountId() + "", account.getEmail(), null, null,
-				account.getName(), account.getPhoneNumber(), account.getAddress());
+		return new AccountForm(account);
 	}
 
 }

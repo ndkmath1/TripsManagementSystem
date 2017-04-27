@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.trips.model.Account;
+import com.trips.model.AccountForm;
 import com.trips.service.AccountService;
 import com.trips.validator.AccountValidator;
 
@@ -35,7 +35,7 @@ public class AccountController {
 		if (target == null) {
 			return;
 		}
-		if (target.getClass() == Account.class) {
+		if (target.getClass() == AccountForm.class) {
 			dataBinder.setValidator(accountValidator);
 		}
 	}
@@ -46,11 +46,13 @@ public class AccountController {
 		return "admin/account/list";
 	}
 	
-	private String formAccount(Model model, Account account) {
+	private String formAccount(Model model, AccountForm account) {
 		model.addAttribute("accountForm", account);
 		if (account.getId() == null) {
+			System.out.println("### create new account");
 			model.addAttribute("accountFormTitle", "Create new account");
 		} else {
+			System.out.println("### edit account");
 			model.addAttribute("accountFormTitle", "Edit an account");
 		}
 		return "admin/account/form";
@@ -58,12 +60,12 @@ public class AccountController {
 
 	@GetMapping("/create")
 	public String create(Model model) {
-		Account account = new Account();
+		AccountForm account = new AccountForm();
 		return formAccount(model , account);
 	}
 
 	@PostMapping("/save")
-	public String save(Model model, @ModelAttribute("accountForm") @Validated Account accountFromForm, BindingResult result, RedirectAttributes redirect) {
+	public String save(Model model, @ModelAttribute("accountForm") @Validated AccountForm accountFromForm, BindingResult result, RedirectAttributes redirect) {
 		if (result.hasErrors()) {
 			return formAccount(model, accountFromForm);
 		} else {

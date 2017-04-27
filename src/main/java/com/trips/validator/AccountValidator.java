@@ -6,7 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.trips.model.Account;
+import com.trips.model.AccountForm;
 
 @Component
 public class AccountValidator implements Validator {
@@ -15,12 +15,12 @@ public class AccountValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return Account.class.equals(clazz);
+		return AccountForm.class.equals(clazz);
 	}
 
 	@Override
 	public void validate(Object target, Errors errors) {
-		Account account = (Account) target;
+		AccountForm account = (AccountForm) target;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty.accountForm.email");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty.accountForm.password");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "NotEmpty.accountForm.confirmPassword");
