@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 25, 2017 3:44:44 PM by Hibernate Tools 4.3.5.Final
+// Generated Apr 29, 2017 1:59:17 AM by Hibernate Tools 4.3.5.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -22,16 +22,16 @@ public class WeekSchedule implements java.io.Serializable {
 	private int weekday;
 	private Car car;
 	private Route route;
-	private Date timeStart;
+	private Date dateTime;
 
 	public WeekSchedule() {
 	}
 
-	public WeekSchedule(int weekday, Car car, Route route, Date timeStart) {
+	public WeekSchedule(int weekday, Car car, Route route, Date dateTime) {
 		this.weekday = weekday;
 		this.car = car;
 		this.route = route;
-		this.timeStart = timeStart;
+		this.dateTime = dateTime;
 	}
 
 	@Id
@@ -65,14 +65,14 @@ public class WeekSchedule implements java.io.Serializable {
 		this.route = route;
 	}
 
-	@Temporal(TemporalType.TIME)
-	@Column(name = "time_start", nullable = false, length = 8)
-	public Date getTimeStart() {
-		return this.timeStart;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_time", nullable = false, length = 19)
+	public Date getDateTime() {
+		return this.dateTime;
 	}
 
-	public void setTimeStart(Date timeStart) {
-		this.timeStart = timeStart;
+	public void setDateTime(Date dateTime) {
+		this.dateTime = dateTime;
 	}
 
 }

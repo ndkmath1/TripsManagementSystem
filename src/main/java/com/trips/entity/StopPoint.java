@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 25, 2017 3:44:44 PM by Hibernate Tools 4.3.5.Final
+// Generated Apr 29, 2017 1:59:17 AM by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +21,7 @@ public class StopPoint implements java.io.Serializable {
 	private int numericalOrder;
 	private String stopPointName;
 	private Integer minuteTo;
+	private Integer distance;
 
 	public StopPoint() {
 	}
@@ -32,12 +33,14 @@ public class StopPoint implements java.io.Serializable {
 		this.stopPointName = stopPointName;
 	}
 
-	public StopPoint(int stopPointId, Route route, int numericalOrder, String stopPointName, Integer minuteTo) {
+	public StopPoint(int stopPointId, Route route, int numericalOrder, String stopPointName, Integer minuteTo,
+			Integer distance) {
 		this.stopPointId = stopPointId;
 		this.route = route;
 		this.numericalOrder = numericalOrder;
 		this.stopPointName = stopPointName;
 		this.minuteTo = minuteTo;
+		this.distance = distance;
 	}
 
 	@Id
@@ -86,6 +89,15 @@ public class StopPoint implements java.io.Serializable {
 
 	public void setMinuteTo(Integer minuteTo) {
 		this.minuteTo = minuteTo;
+	}
+
+	@Column(name = "distance")
+	public Integer getDistance() {
+		return this.distance;
+	}
+
+	public void setDistance(Integer distance) {
+		this.distance = distance;
 	}
 
 }

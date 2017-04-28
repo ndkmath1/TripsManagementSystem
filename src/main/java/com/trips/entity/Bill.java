@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 25, 2017 3:44:44 PM by Hibernate Tools 4.3.5.Final
+// Generated Apr 29, 2017 1:59:17 AM by Hibernate Tools 4.3.5.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -25,9 +25,9 @@ public class Bill implements java.io.Serializable {
 	private Car car;
 	private Driver driver;
 	private Route route;
-	private Station station;
+	private Station stationByStationIdLast;
+	private Station stationByStationIdFirst;
 	private Date dateTime;
-	private String stationIdLast;
 	private String customerName;
 	private String customerPhone;
 	private String cusStartPoint;
@@ -38,12 +38,11 @@ public class Bill implements java.io.Serializable {
 	public Bill() {
 	}
 
-	public Bill(Car car, Driver driver, Route route, Station station, Date dateTime, String customerName,
-			String customerPhone, String cusStartPoint, String cusEndPoint) {
+	public Bill(Car car, Driver driver, Route route, Date dateTime, String customerName, String customerPhone,
+			String cusStartPoint, String cusEndPoint) {
 		this.car = car;
 		this.driver = driver;
 		this.route = route;
-		this.station = station;
 		this.dateTime = dateTime;
 		this.customerName = customerName;
 		this.customerPhone = customerPhone;
@@ -51,15 +50,15 @@ public class Bill implements java.io.Serializable {
 		this.cusEndPoint = cusEndPoint;
 	}
 
-	public Bill(Car car, Driver driver, Route route, Station station, Date dateTime, String stationIdLast,
-			String customerName, String customerPhone, String cusStartPoint, String cusEndPoint, String ticket,
-			Byte status) {
+	public Bill(Car car, Driver driver, Route route, Station stationByStationIdLast, Station stationByStationIdFirst,
+			Date dateTime, String customerName, String customerPhone, String cusStartPoint, String cusEndPoint,
+			String ticket, Byte status) {
 		this.car = car;
 		this.driver = driver;
 		this.route = route;
-		this.station = station;
+		this.stationByStationIdLast = stationByStationIdLast;
+		this.stationByStationIdFirst = stationByStationIdFirst;
 		this.dateTime = dateTime;
-		this.stationIdLast = stationIdLast;
 		this.customerName = customerName;
 		this.customerPhone = customerPhone;
 		this.cusStartPoint = cusStartPoint;
@@ -111,13 +110,23 @@ public class Bill implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "station_id_first", nullable = false)
-	public Station getStation() {
-		return this.station;
+	@JoinColumn(name = "station_id_last")
+	public Station getStationByStationIdLast() {
+		return this.stationByStationIdLast;
 	}
 
-	public void setStation(Station station) {
-		this.station = station;
+	public void setStationByStationIdLast(Station stationByStationIdLast) {
+		this.stationByStationIdLast = stationByStationIdLast;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "station_id_first")
+	public Station getStationByStationIdFirst() {
+		return this.stationByStationIdFirst;
+	}
+
+	public void setStationByStationIdFirst(Station stationByStationIdFirst) {
+		this.stationByStationIdFirst = stationByStationIdFirst;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -128,15 +137,6 @@ public class Bill implements java.io.Serializable {
 
 	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
-	}
-
-	@Column(name = "station_id_last", length = 45)
-	public String getStationIdLast() {
-		return this.stationIdLast;
-	}
-
-	public void setStationIdLast(String stationIdLast) {
-		this.stationIdLast = stationIdLast;
 	}
 
 	@Column(name = "customer_name", nullable = false, length = 60)

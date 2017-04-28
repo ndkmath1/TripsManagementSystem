@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 25, 2017 3:44:44 PM by Hibernate Tools 4.3.5.Final
+// Generated Apr 29, 2017 1:59:17 AM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,6 +22,8 @@ import javax.persistence.Table;
 public class Route implements java.io.Serializable {
 
 	private Integer routeId;
+	private Station stationByOriginStationId;
+	private Station stationByDestinationStationId;
 	private String origin;
 	private String destination;
 	private Integer costSeatType1;
@@ -41,10 +45,13 @@ public class Route implements java.io.Serializable {
 		this.destination = destination;
 	}
 
-	public Route(String origin, String destination, Integer costSeatType1, Integer costSeatType2,
-			Set<ScheduleControl> scheduleControls, Set<WeekSchedule> weekSchedules, Set<Bill> bills,
-			Set<StopPoint> stopPoints, Set<ScheduleControl> scheduleControls_1, Set<WeekSchedule> weekSchedules_1,
-			Set<StopPoint> stopPoints_1, Set<Bill> bills_1) {
+	public Route(Station stationByOriginStationId, Station stationByDestinationStationId, String origin,
+			String destination, Integer costSeatType1, Integer costSeatType2, Set<ScheduleControl> scheduleControls,
+			Set<WeekSchedule> weekSchedules, Set<Bill> bills, Set<StopPoint> stopPoints,
+			Set<ScheduleControl> scheduleControls_1, Set<WeekSchedule> weekSchedules_1, Set<StopPoint> stopPoints_1,
+			Set<Bill> bills_1) {
+		this.stationByOriginStationId = stationByOriginStationId;
+		this.stationByDestinationStationId = stationByDestinationStationId;
 		this.origin = origin;
 		this.destination = destination;
 		this.costSeatType1 = costSeatType1;
@@ -69,6 +76,26 @@ public class Route implements java.io.Serializable {
 
 	public void setRouteId(Integer routeId) {
 		this.routeId = routeId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "origin_station_id")
+	public Station getStationByOriginStationId() {
+		return this.stationByOriginStationId;
+	}
+
+	public void setStationByOriginStationId(Station stationByOriginStationId) {
+		this.stationByOriginStationId = stationByOriginStationId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "destination_station_id")
+	public Station getStationByDestinationStationId() {
+		return this.stationByDestinationStationId;
+	}
+
+	public void setStationByDestinationStationId(Station stationByDestinationStationId) {
+		this.stationByDestinationStationId = stationByDestinationStationId;
 	}
 
 	@Column(name = "origin", nullable = false, length = 45)

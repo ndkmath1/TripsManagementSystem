@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 25, 2017 3:44:44 PM by Hibernate Tools 4.3.5.Final
+// Generated Apr 29, 2017 1:59:17 AM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
