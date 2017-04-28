@@ -53,17 +53,14 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void saveAccountFromForm(AccountForm accountForm) {
 		Integer accountId = accountForm.getId();
+		System.out.println("### address of account: " + accountForm.getAddress());
 		Account newAccount = new Account(accountForm.getEmail(), 
 				pwdEncoder.encode(accountForm.getPassword()), accountForm.getName(),
 				accountForm.getPhoneNumber(), accountForm.getAddress(), null);
 		if (accountId != null) {
-//			System.out.println("### account is not null");
 			newAccount.setAccountId(accountId);
-			save(newAccount);
-		} else {
-//			System.out.println("### account is null");
-			save(newAccount);
 		}
+		save(newAccount);
 	}
 
 	@Override

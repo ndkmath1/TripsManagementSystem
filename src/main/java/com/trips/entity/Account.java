@@ -28,6 +28,7 @@ public class Account implements java.io.Serializable {
 	private String role;
 
 	public Account() {
+		
 	}
 
 	public Account(String email, String password) {

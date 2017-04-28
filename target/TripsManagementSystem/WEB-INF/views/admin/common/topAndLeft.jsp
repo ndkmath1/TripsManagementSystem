@@ -4,12 +4,12 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div id="top-nav" class="shadow">
 	<div class="pull-left">
-		<a href="javascript:void(0)" class="site-title"> <!--<div class="menu-container" onclick="myFunction(this)">-->
+		<div class="site-title"> <!--<div class="menu-container" onclick="myFunction(this)">-->
 			<!--<div class="bar1"></div>--> <!--<div class="bar2"></div>--> <!--<div class="bar3"></div>-->
 			<!--</div>--> <!--<span class="glyphicon glyphicon-home"></span>--> <span
 			style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776;
-				open</span> <span>Trips Management System</span>
-		</a>
+				open</span> <a href="<c:url value="/"/>"><span>Trips Management System</span></a>
+		</div>
 	</div>
 	<div class="admin pull-right flex">
 		<div class="admin-name">
@@ -51,7 +51,7 @@
 	</div>
 </div>
 
-<div id="left-nav" class="right-nav-shadow" style="width: 0">
+<div id="left-nav" class="right-nav-shadow">
 	<div class="profile">
 		<div class="profile-pic">
 			<img class="img-circle profile-image"
@@ -74,9 +74,9 @@
 						class="glyphicon glyphicon-chevron-down gl-right"></span>
 				</div> <!--  <ul class="child-menu" styte="display: block"> -->
 				<ul class="child-menu">
-					<li class="current-page"><a href="index.html">Danh sách
+					<li class="current-page"><a href="<c:url value="/admin/account/list" />">Danh sách
 							tài khoản</a></li>
-					<li><a href="javascript:void(0)">Thêm tài khoản</a></li>
+					<li><a href="<c:url value="/admin/account/create" />">Thêm tài khoản</a></li>
 				</ul>
 			</li>
 			<li>

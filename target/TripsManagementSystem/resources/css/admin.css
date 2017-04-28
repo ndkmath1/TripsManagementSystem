@@ -10,6 +10,7 @@ body {
     margin-top: 70px;
     margin-left: 17.7%;
     transition: 0.5s;
+    margin-left: 0;
 }
 
 #top-nav {
@@ -33,6 +34,7 @@ body {
     transition: 0.5s;
     overflow: hidden;
     background-color: #2a3f54;
+    width: 0;
 }
 
 .sidenav {
@@ -362,6 +364,15 @@ ul.admin-content li:hover {
     /*padding: 0 10px 10px;*/
 }
 
+.user-detail-top > h4 {
+	background-color: #ededed;
+    color: #5a738e;
+    list-style-type: none;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 10px 5px;
+    text-align: center;
+}
+
 .user-detail-top > ul {
     background-color: #ededed;
     color: #5a738e;
@@ -427,6 +438,7 @@ ul.admin-content li:hover {
 
 .creator-subheader-controls {
     float: right;
+    width: 220px;
 }
 
 .creator-video-item {

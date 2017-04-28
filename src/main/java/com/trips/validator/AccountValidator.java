@@ -13,6 +13,9 @@ public class AccountValidator implements Validator {
 
 	private EmailValidator emailValidator = EmailValidator.getInstance();
 
+    /**
+     * This Validator validates *just* AccountForm instances
+     */
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return AccountForm.class.equals(clazz);

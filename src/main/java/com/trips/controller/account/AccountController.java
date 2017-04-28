@@ -20,7 +20,7 @@ import com.trips.service.AccountService;
 import com.trips.validator.AccountValidator;
 
 @Controller
-@RequestMapping("/admin/account")
+@RequestMapping(value = "/admin/account", produces = "text/plain;charset=UTF-8")
 public class AccountController {
 
 	@Autowired

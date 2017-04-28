@@ -6,8 +6,8 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<title>${formAccountTitle}</title>
-<meta charset="utf-8">
+<title>${accountFormTitle}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
