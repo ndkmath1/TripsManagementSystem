@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 29, 2017 1:59:17 AM by Hibernate Tools 4.3.5.Final
+// Generated Apr 29, 2017 2:20:02 AM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,14 +21,10 @@ public class Station implements java.io.Serializable {
 
 	private Integer stationId;
 	private String stationName;
-	private Set<Bill> billsForStationIdLast = new HashSet<Bill>(0);
 	private Set<Route> routesForOriginStationId = new HashSet<Route>(0);
-	private Set<Route> routesForOriginStationId_1 = new HashSet<Route>(0);
+	private Set<Bill> billsForStationIdLast = new HashSet<Bill>(0);
 	private Set<Route> routesForDestinationStationId = new HashSet<Route>(0);
-	private Set<Bill> billsForStationIdLast_1 = new HashSet<Bill>(0);
 	private Set<Bill> billsForStationIdFirst = new HashSet<Bill>(0);
-	private Set<Route> routesForDestinationStationId_1 = new HashSet<Route>(0);
-	private Set<Bill> billsForStationIdFirst_1 = new HashSet<Bill>(0);
 
 	public Station() {
 	}
@@ -37,19 +33,13 @@ public class Station implements java.io.Serializable {
 		this.stationName = stationName;
 	}
 
-	public Station(String stationName, Set<Bill> billsForStationIdLast, Set<Route> routesForOriginStationId,
-			Set<Route> routesForOriginStationId_1, Set<Route> routesForDestinationStationId,
-			Set<Bill> billsForStationIdLast_1, Set<Bill> billsForStationIdFirst,
-			Set<Route> routesForDestinationStationId_1, Set<Bill> billsForStationIdFirst_1) {
+	public Station(String stationName, Set<Route> routesForOriginStationId, Set<Bill> billsForStationIdLast,
+			Set<Route> routesForDestinationStationId, Set<Bill> billsForStationIdFirst) {
 		this.stationName = stationName;
-		this.billsForStationIdLast = billsForStationIdLast;
 		this.routesForOriginStationId = routesForOriginStationId;
-		this.routesForOriginStationId_1 = routesForOriginStationId_1;
+		this.billsForStationIdLast = billsForStationIdLast;
 		this.routesForDestinationStationId = routesForDestinationStationId;
-		this.billsForStationIdLast_1 = billsForStationIdLast_1;
 		this.billsForStationIdFirst = billsForStationIdFirst;
-		this.routesForDestinationStationId_1 = routesForDestinationStationId_1;
-		this.billsForStationIdFirst_1 = billsForStationIdFirst_1;
 	}
 
 	@Id
@@ -73,15 +63,6 @@ public class Station implements java.io.Serializable {
 		this.stationName = stationName;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "stationByStationIdLast")
-	public Set<Bill> getBillsForStationIdLast() {
-		return this.billsForStationIdLast;
-	}
-
-	public void setBillsForStationIdLast(Set<Bill> billsForStationIdLast) {
-		this.billsForStationIdLast = billsForStationIdLast;
-	}
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "stationByOriginStationId")
 	public Set<Route> getRoutesForOriginStationId() {
 		return this.routesForOriginStationId;
@@ -91,13 +72,13 @@ public class Station implements java.io.Serializable {
 		this.routesForOriginStationId = routesForOriginStationId;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "stationByOriginStationId")
-	public Set<Route> getRoutesForOriginStationId_1() {
-		return this.routesForOriginStationId_1;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "stationByStationIdLast")
+	public Set<Bill> getBillsForStationIdLast() {
+		return this.billsForStationIdLast;
 	}
 
-	public void setRoutesForOriginStationId_1(Set<Route> routesForOriginStationId_1) {
-		this.routesForOriginStationId_1 = routesForOriginStationId_1;
+	public void setBillsForStationIdLast(Set<Bill> billsForStationIdLast) {
+		this.billsForStationIdLast = billsForStationIdLast;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "stationByDestinationStationId")
@@ -109,15 +90,6 @@ public class Station implements java.io.Serializable {
 		this.routesForDestinationStationId = routesForDestinationStationId;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "stationByStationIdLast")
-	public Set<Bill> getBillsForStationIdLast_1() {
-		return this.billsForStationIdLast_1;
-	}
-
-	public void setBillsForStationIdLast_1(Set<Bill> billsForStationIdLast_1) {
-		this.billsForStationIdLast_1 = billsForStationIdLast_1;
-	}
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "stationByStationIdFirst")
 	public Set<Bill> getBillsForStationIdFirst() {
 		return this.billsForStationIdFirst;
@@ -125,24 +97,6 @@ public class Station implements java.io.Serializable {
 
 	public void setBillsForStationIdFirst(Set<Bill> billsForStationIdFirst) {
 		this.billsForStationIdFirst = billsForStationIdFirst;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "stationByDestinationStationId")
-	public Set<Route> getRoutesForDestinationStationId_1() {
-		return this.routesForDestinationStationId_1;
-	}
-
-	public void setRoutesForDestinationStationId_1(Set<Route> routesForDestinationStationId_1) {
-		this.routesForDestinationStationId_1 = routesForDestinationStationId_1;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "stationByStationIdFirst")
-	public Set<Bill> getBillsForStationIdFirst_1() {
-		return this.billsForStationIdFirst_1;
-	}
-
-	public void setBillsForStationIdFirst_1(Set<Bill> billsForStationIdFirst_1) {
-		this.billsForStationIdFirst_1 = billsForStationIdFirst_1;
 	}
 
 }

@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 29, 2017 1:59:17 AM by Hibernate Tools 4.3.5.Final
+// Generated Apr 29, 2017 2:20:02 AM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,14 +28,10 @@ public class Route implements java.io.Serializable {
 	private String destination;
 	private Integer costSeatType1;
 	private Integer costSeatType2;
+	private Set<Bill> bills = new HashSet<Bill>(0);
 	private Set<ScheduleControl> scheduleControls = new HashSet<ScheduleControl>(0);
 	private Set<WeekSchedule> weekSchedules = new HashSet<WeekSchedule>(0);
-	private Set<Bill> bills = new HashSet<Bill>(0);
 	private Set<StopPoint> stopPoints = new HashSet<StopPoint>(0);
-	private Set<ScheduleControl> scheduleControls_1 = new HashSet<ScheduleControl>(0);
-	private Set<WeekSchedule> weekSchedules_1 = new HashSet<WeekSchedule>(0);
-	private Set<StopPoint> stopPoints_1 = new HashSet<StopPoint>(0);
-	private Set<Bill> bills_1 = new HashSet<Bill>(0);
 
 	public Route() {
 	}
@@ -46,24 +42,18 @@ public class Route implements java.io.Serializable {
 	}
 
 	public Route(Station stationByOriginStationId, Station stationByDestinationStationId, String origin,
-			String destination, Integer costSeatType1, Integer costSeatType2, Set<ScheduleControl> scheduleControls,
-			Set<WeekSchedule> weekSchedules, Set<Bill> bills, Set<StopPoint> stopPoints,
-			Set<ScheduleControl> scheduleControls_1, Set<WeekSchedule> weekSchedules_1, Set<StopPoint> stopPoints_1,
-			Set<Bill> bills_1) {
+			String destination, Integer costSeatType1, Integer costSeatType2, Set<Bill> bills,
+			Set<ScheduleControl> scheduleControls, Set<WeekSchedule> weekSchedules, Set<StopPoint> stopPoints) {
 		this.stationByOriginStationId = stationByOriginStationId;
 		this.stationByDestinationStationId = stationByDestinationStationId;
 		this.origin = origin;
 		this.destination = destination;
 		this.costSeatType1 = costSeatType1;
 		this.costSeatType2 = costSeatType2;
+		this.bills = bills;
 		this.scheduleControls = scheduleControls;
 		this.weekSchedules = weekSchedules;
-		this.bills = bills;
 		this.stopPoints = stopPoints;
-		this.scheduleControls_1 = scheduleControls_1;
-		this.weekSchedules_1 = weekSchedules_1;
-		this.stopPoints_1 = stopPoints_1;
-		this.bills_1 = bills_1;
 	}
 
 	@Id
@@ -135,6 +125,15 @@ public class Route implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
+	public Set<Bill> getBills() {
+		return this.bills;
+	}
+
+	public void setBills(Set<Bill> bills) {
+		this.bills = bills;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
 	public Set<ScheduleControl> getScheduleControls() {
 		return this.scheduleControls;
 	}
@@ -153,57 +152,12 @@ public class Route implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
-	public Set<Bill> getBills() {
-		return this.bills;
-	}
-
-	public void setBills(Set<Bill> bills) {
-		this.bills = bills;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
 	public Set<StopPoint> getStopPoints() {
 		return this.stopPoints;
 	}
 
 	public void setStopPoints(Set<StopPoint> stopPoints) {
 		this.stopPoints = stopPoints;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
-	public Set<ScheduleControl> getScheduleControls_1() {
-		return this.scheduleControls_1;
-	}
-
-	public void setScheduleControls_1(Set<ScheduleControl> scheduleControls_1) {
-		this.scheduleControls_1 = scheduleControls_1;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
-	public Set<WeekSchedule> getWeekSchedules_1() {
-		return this.weekSchedules_1;
-	}
-
-	public void setWeekSchedules_1(Set<WeekSchedule> weekSchedules_1) {
-		this.weekSchedules_1 = weekSchedules_1;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
-	public Set<StopPoint> getStopPoints_1() {
-		return this.stopPoints_1;
-	}
-
-	public void setStopPoints_1(Set<StopPoint> stopPoints_1) {
-		this.stopPoints_1 = stopPoints_1;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
-	public Set<Bill> getBills_1() {
-		return this.bills_1;
-	}
-
-	public void setBills_1(Set<Bill> bills_1) {
-		this.bills_1 = bills_1;
 	}
 
 }

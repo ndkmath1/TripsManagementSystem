@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 29, 2017 1:59:17 AM by Hibernate Tools 4.3.5.Final
+// Generated Apr 29, 2017 2:20:02 AM by Hibernate Tools 4.3.5.Final
 
 import java.util.Date;
 import javax.persistence.Column;
