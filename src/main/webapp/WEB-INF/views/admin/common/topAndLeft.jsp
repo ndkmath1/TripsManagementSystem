@@ -7,7 +7,7 @@
 		<div class="site-title"> <!--<div class="menu-container" onclick="myFunction(this)">-->
 			<!--<div class="bar1"></div>--> <!--<div class="bar2"></div>--> <!--<div class="bar3"></div>-->
 			<!--</div>--> <!--<span class="glyphicon glyphicon-home"></span>--> <span
-			style="font-size: 30px; cursor: pointer" onclick="openNav()">&#9776;
+			style="font-size: 30px; cursor: pointer" class="toggle-open">&#9776;
 				open</span> <a href="<c:url value="/"/>"><span>Trips Management System</span></a>
 		</div>
 	</div>
@@ -62,7 +62,7 @@
 			<span>Welcome,</span>
 			<h2><sec:authentication property="principal.name" /></h2>
 		</div>
-		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<span class="closebtn toggle-open">&times;</span>
 	</div>
 	<div style="clear: both;"></div>
 	<div id="left-nav-content">
