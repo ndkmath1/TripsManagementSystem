@@ -27,6 +27,7 @@ E:\Google Drive\workspace-jee-neon3\TripsManagementSystem\src\main\java\com\trip
 E:\Google Drive\workspace-jee-neon3\TripsManagementSystem\src\main\java\com\trips\config\SpringWebAppInitializer.java
 E:\Google Drive\workspace-jee-neon3\TripsManagementSystem\src\main\java\com\trips\security\WebSecurityConfig.java
 E:\Google Drive\workspace-jee-neon3\TripsManagementSystem\src\main\java\com\trips\config\WebMvcConfig.java
+E:\Google Drive\workspace-jee-neon3\TripsManagementSystem\src\main\java\com\trips\repository\WeekScheduleRepository.java
 E:\Google Drive\workspace-jee-neon3\TripsManagementSystem\src\main\java\com\trips\service\CarService.java
 E:\Google Drive\workspace-jee-neon3\TripsManagementSystem\src\main\java\com\trips\entity\Station.java
 E:\Google Drive\workspace-jee-neon3\TripsManagementSystem\src\main\java\com\trips\repository\UserRepository.java

@@ -1,10 +1,12 @@
 package com.trips.entity;
-// Generated Apr 29, 2017 2:20:02 AM by Hibernate Tools 4.3.5.Final
+// Generated Apr 30, 2017 2:08:08 PM by Hibernate Tools 4.3.5.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,30 +21,32 @@ import javax.persistence.TemporalType;
 @Table(name = "week_schedule", catalog = "project_2")
 public class WeekSchedule implements java.io.Serializable {
 
-	private int weekday;
+	private Integer weekScheduleId;
 	private Car car;
 	private Route route;
+	private int weekday;
 	private Date dateTime;
 
 	public WeekSchedule() {
 	}
 
-	public WeekSchedule(int weekday, Car car, Route route, Date dateTime) {
-		this.weekday = weekday;
+	public WeekSchedule(Car car, Route route, int weekday, Date dateTime) {
 		this.car = car;
 		this.route = route;
+		this.weekday = weekday;
 		this.dateTime = dateTime;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "weekday", unique = true, nullable = false)
-	public int getWeekday() {
-		return this.weekday;
+	@Column(name = "week_schedule_id", unique = true, nullable = false)
+	public Integer getWeekScheduleId() {
+		return this.weekScheduleId;
 	}
 
-	public void setWeekday(int weekday) {
-		this.weekday = weekday;
+	public void setWeekScheduleId(Integer weekScheduleId) {
+		this.weekScheduleId = weekScheduleId;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -63,6 +67,15 @@ public class WeekSchedule implements java.io.Serializable {
 
 	public void setRoute(Route route) {
 		this.route = route;
+	}
+
+	@Column(name = "weekday", nullable = false)
+	public int getWeekday() {
+		return this.weekday;
+	}
+
+	public void setWeekday(int weekday) {
+		this.weekday = weekday;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trips.entity.Account;
+import com.trips.entity.WeekSchedule;
 import com.trips.repository.UserRepository;
 
 @Component
@@ -43,6 +44,10 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 			admin.setAddress(address);
 			accountRepository.save(admin);
 		}
+	}
+	
+	private void insertSchedule() {
+//		WeekSchedule schedule = new WeekSchedule(weekday, car, route, dateTime)
 	}
 
 }

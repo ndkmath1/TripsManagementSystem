@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 29, 2017 2:20:02 AM by Hibernate Tools 4.3.5.Final
+// Generated Apr 30, 2017 2:08:08 PM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,8 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,16 +20,16 @@ import javax.persistence.Table;
 public class Route implements java.io.Serializable {
 
 	private Integer routeId;
-	private Station stationByOriginStationId;
-	private Station stationByDestinationStationId;
 	private String origin;
 	private String destination;
 	private Integer costSeatType1;
 	private Integer costSeatType2;
+	private Integer minute;
 	private Set<Bill> bills = new HashSet<Bill>(0);
-	private Set<ScheduleControl> scheduleControls = new HashSet<ScheduleControl>(0);
+	private Set<Station> stations = new HashSet<Station>(0);
 	private Set<WeekSchedule> weekSchedules = new HashSet<WeekSchedule>(0);
 	private Set<StopPoint> stopPoints = new HashSet<StopPoint>(0);
+	private Set<ScheduleControl> scheduleControls = new HashSet<ScheduleControl>(0);
 
 	public Route() {
 	}
@@ -41,19 +39,19 @@ public class Route implements java.io.Serializable {
 		this.destination = destination;
 	}
 
-	public Route(Station stationByOriginStationId, Station stationByDestinationStationId, String origin,
-			String destination, Integer costSeatType1, Integer costSeatType2, Set<Bill> bills,
-			Set<ScheduleControl> scheduleControls, Set<WeekSchedule> weekSchedules, Set<StopPoint> stopPoints) {
-		this.stationByOriginStationId = stationByOriginStationId;
-		this.stationByDestinationStationId = stationByDestinationStationId;
+	public Route(String origin, String destination, Integer costSeatType1, Integer costSeatType2, Integer minute,
+			Set<Bill> bills, Set<Station> stations, Set<WeekSchedule> weekSchedules, Set<StopPoint> stopPoints,
+			Set<ScheduleControl> scheduleControls) {
 		this.origin = origin;
 		this.destination = destination;
 		this.costSeatType1 = costSeatType1;
 		this.costSeatType2 = costSeatType2;
+		this.minute = minute;
 		this.bills = bills;
-		this.scheduleControls = scheduleControls;
+		this.stations = stations;
 		this.weekSchedules = weekSchedules;
 		this.stopPoints = stopPoints;
+		this.scheduleControls = scheduleControls;
 	}
 
 	@Id
@@ -66,26 +64,6 @@ public class Route implements java.io.Serializable {
 
 	public void setRouteId(Integer routeId) {
 		this.routeId = routeId;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "origin_station_id")
-	public Station getStationByOriginStationId() {
-		return this.stationByOriginStationId;
-	}
-
-	public void setStationByOriginStationId(Station stationByOriginStationId) {
-		this.stationByOriginStationId = stationByOriginStationId;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "destination_station_id")
-	public Station getStationByDestinationStationId() {
-		return this.stationByDestinationStationId;
-	}
-
-	public void setStationByDestinationStationId(Station stationByDestinationStationId) {
-		this.stationByDestinationStationId = stationByDestinationStationId;
 	}
 
 	@Column(name = "origin", nullable = false, length = 45)
@@ -124,6 +102,15 @@ public class Route implements java.io.Serializable {
 		this.costSeatType2 = costSeatType2;
 	}
 
+	@Column(name = "minute")
+	public Integer getMinute() {
+		return this.minute;
+	}
+
+	public void setMinute(Integer minute) {
+		this.minute = minute;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
 	public Set<Bill> getBills() {
 		return this.bills;
@@ -134,12 +121,12 @@ public class Route implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
-	public Set<ScheduleControl> getScheduleControls() {
-		return this.scheduleControls;
+	public Set<Station> getStations() {
+		return this.stations;
 	}
 
-	public void setScheduleControls(Set<ScheduleControl> scheduleControls) {
-		this.scheduleControls = scheduleControls;
+	public void setStations(Set<Station> stations) {
+		this.stations = stations;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
@@ -158,6 +145,15 @@ public class Route implements java.io.Serializable {
 
 	public void setStopPoints(Set<StopPoint> stopPoints) {
 		this.stopPoints = stopPoints;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
+	public Set<ScheduleControl> getScheduleControls() {
+		return this.scheduleControls;
+	}
+
+	public void setScheduleControls(Set<ScheduleControl> scheduleControls) {
+		this.scheduleControls = scheduleControls;
 	}
 
 }

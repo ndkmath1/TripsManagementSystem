@@ -1,9 +1,11 @@
 package com.trips.entity;
-// Generated Apr 29, 2017 2:20:02 AM by Hibernate Tools 4.3.5.Final
+// Generated Apr 30, 2017 2:08:08 PM by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "stop_point", catalog = "project_2")
 public class StopPoint implements java.io.Serializable {
 
-	private int stopPointId;
+	private Integer stopPointId;
 	private Route route;
 	private int numericalOrder;
 	private String stopPointName;
@@ -26,16 +28,13 @@ public class StopPoint implements java.io.Serializable {
 	public StopPoint() {
 	}
 
-	public StopPoint(int stopPointId, Route route, int numericalOrder, String stopPointName) {
-		this.stopPointId = stopPointId;
+	public StopPoint(Route route, int numericalOrder, String stopPointName) {
 		this.route = route;
 		this.numericalOrder = numericalOrder;
 		this.stopPointName = stopPointName;
 	}
 
-	public StopPoint(int stopPointId, Route route, int numericalOrder, String stopPointName, Integer minuteTo,
-			Integer distance) {
-		this.stopPointId = stopPointId;
+	public StopPoint(Route route, int numericalOrder, String stopPointName, Integer minuteTo, Integer distance) {
 		this.route = route;
 		this.numericalOrder = numericalOrder;
 		this.stopPointName = stopPointName;
@@ -44,13 +43,14 @@ public class StopPoint implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "stop_point_id", unique = true, nullable = false)
-	public int getStopPointId() {
+	public Integer getStopPointId() {
 		return this.stopPointId;
 	}
 
-	public void setStopPointId(int stopPointId) {
+	public void setStopPointId(Integer stopPointId) {
 		this.stopPointId = stopPointId;
 	}
 
