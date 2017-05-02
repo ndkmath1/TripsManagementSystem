@@ -9,7 +9,8 @@ public class HelloWorldController {
 	
 	@GetMapping("/tags")
 	public String tags() {
-		return "demo/demo";
+		String a = "demo/demo";
+		return a;
 	}
 	
 }

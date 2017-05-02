@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 30, 2017 2:08:08 PM by Hibernate Tools 4.3.5.Final
+// Generated May 1, 2017 9:59:44 PM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,10 +25,10 @@ public class Route implements java.io.Serializable {
 	private Integer costSeatType1;
 	private Integer costSeatType2;
 	private Integer minute;
-	private Set<Bill> bills = new HashSet<Bill>(0);
-	private Set<Station> stations = new HashSet<Station>(0);
-	private Set<WeekSchedule> weekSchedules = new HashSet<WeekSchedule>(0);
 	private Set<StopPoint> stopPoints = new HashSet<StopPoint>(0);
+	private Set<Bill> bills = new HashSet<Bill>(0);
+	private Set<WeekSchedule> weekSchedules = new HashSet<WeekSchedule>(0);
+	private Set<Station> stations = new HashSet<Station>(0);
 	private Set<ScheduleControl> scheduleControls = new HashSet<ScheduleControl>(0);
 
 	public Route() {
@@ -40,17 +40,17 @@ public class Route implements java.io.Serializable {
 	}
 
 	public Route(String origin, String destination, Integer costSeatType1, Integer costSeatType2, Integer minute,
-			Set<Bill> bills, Set<Station> stations, Set<WeekSchedule> weekSchedules, Set<StopPoint> stopPoints,
+			Set<StopPoint> stopPoints, Set<Bill> bills, Set<WeekSchedule> weekSchedules, Set<Station> stations,
 			Set<ScheduleControl> scheduleControls) {
 		this.origin = origin;
 		this.destination = destination;
 		this.costSeatType1 = costSeatType1;
 		this.costSeatType2 = costSeatType2;
 		this.minute = minute;
-		this.bills = bills;
-		this.stations = stations;
-		this.weekSchedules = weekSchedules;
 		this.stopPoints = stopPoints;
+		this.bills = bills;
+		this.weekSchedules = weekSchedules;
+		this.stations = stations;
 		this.scheduleControls = scheduleControls;
 	}
 
@@ -112,21 +112,21 @@ public class Route implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
+	public Set<StopPoint> getStopPoints() {
+		return this.stopPoints;
+	}
+
+	public void setStopPoints(Set<StopPoint> stopPoints) {
+		this.stopPoints = stopPoints;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
 	public Set<Bill> getBills() {
 		return this.bills;
 	}
 
 	public void setBills(Set<Bill> bills) {
 		this.bills = bills;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
-	public Set<Station> getStations() {
-		return this.stations;
-	}
-
-	public void setStations(Set<Station> stations) {
-		this.stations = stations;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
@@ -139,12 +139,12 @@ public class Route implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")
-	public Set<StopPoint> getStopPoints() {
-		return this.stopPoints;
+	public Set<Station> getStations() {
+		return this.stations;
 	}
 
-	public void setStopPoints(Set<StopPoint> stopPoints) {
-		this.stopPoints = stopPoints;
+	public void setStations(Set<Station> stations) {
+		this.stations = stations;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "route")

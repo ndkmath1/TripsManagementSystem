@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 30, 2017 2:08:08 PM by Hibernate Tools 4.3.5.Final
+// Generated May 1, 2017 9:59:44 PM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,20 +22,20 @@ public class Driver implements java.io.Serializable {
 	private Integer driverId;
 	private String driverName;
 	private String phoneNumber;
-	private Set<ScheduleControl> scheduleControls = new HashSet<ScheduleControl>(0);
 	private Set<Car> cars = new HashSet<Car>(0);
 	private Set<Bill> bills = new HashSet<Bill>(0);
+	private Set<ScheduleControl> scheduleControls = new HashSet<ScheduleControl>(0);
 
 	public Driver() {
 	}
 
-	public Driver(String driverName, String phoneNumber, Set<ScheduleControl> scheduleControls, Set<Car> cars,
-			Set<Bill> bills) {
+	public Driver(String driverName, String phoneNumber, Set<Car> cars, Set<Bill> bills,
+			Set<ScheduleControl> scheduleControls) {
 		this.driverName = driverName;
 		this.phoneNumber = phoneNumber;
-		this.scheduleControls = scheduleControls;
 		this.cars = cars;
 		this.bills = bills;
+		this.scheduleControls = scheduleControls;
 	}
 
 	@Id
@@ -69,15 +69,6 @@ public class Driver implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "driver")
-	public Set<ScheduleControl> getScheduleControls() {
-		return this.scheduleControls;
-	}
-
-	public void setScheduleControls(Set<ScheduleControl> scheduleControls) {
-		this.scheduleControls = scheduleControls;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "driver")
 	public Set<Car> getCars() {
 		return this.cars;
 	}
@@ -93,6 +84,15 @@ public class Driver implements java.io.Serializable {
 
 	public void setBills(Set<Bill> bills) {
 		this.bills = bills;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "driver")
+	public Set<ScheduleControl> getScheduleControls() {
+		return this.scheduleControls;
+	}
+
+	public void setScheduleControls(Set<ScheduleControl> scheduleControls) {
+		this.scheduleControls = scheduleControls;
 	}
 
 }

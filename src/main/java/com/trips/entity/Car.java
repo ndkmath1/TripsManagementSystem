@@ -1,5 +1,5 @@
 package com.trips.entity;
-// Generated Apr 30, 2017 2:08:08 PM by Hibernate Tools 4.3.5.Final
+// Generated May 1, 2017 9:59:44 PM by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,9 +27,9 @@ public class Car implements java.io.Serializable {
 	private Integer numSeatType1;
 	private Integer numSeatType2;
 	private String licensePlate;
-	private Set<ScheduleControl> scheduleControls = new HashSet<ScheduleControl>(0);
 	private Set<WeekSchedule> weekSchedules = new HashSet<WeekSchedule>(0);
 	private Set<Bill> bills = new HashSet<Bill>(0);
+	private Set<ScheduleControl> scheduleControls = new HashSet<ScheduleControl>(0);
 
 	public Car() {
 	}
@@ -40,15 +40,15 @@ public class Car implements java.io.Serializable {
 	}
 
 	public Car(Driver driver, String carType, Integer numSeatType1, Integer numSeatType2, String licensePlate,
-			Set<ScheduleControl> scheduleControls, Set<WeekSchedule> weekSchedules, Set<Bill> bills) {
+			Set<WeekSchedule> weekSchedules, Set<Bill> bills, Set<ScheduleControl> scheduleControls) {
 		this.driver = driver;
 		this.carType = carType;
 		this.numSeatType1 = numSeatType1;
 		this.numSeatType2 = numSeatType2;
 		this.licensePlate = licensePlate;
-		this.scheduleControls = scheduleControls;
 		this.weekSchedules = weekSchedules;
 		this.bills = bills;
+		this.scheduleControls = scheduleControls;
 	}
 
 	@Id
@@ -110,15 +110,6 @@ public class Car implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "car")
-	public Set<ScheduleControl> getScheduleControls() {
-		return this.scheduleControls;
-	}
-
-	public void setScheduleControls(Set<ScheduleControl> scheduleControls) {
-		this.scheduleControls = scheduleControls;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "car")
 	public Set<WeekSchedule> getWeekSchedules() {
 		return this.weekSchedules;
 	}
@@ -134,6 +125,15 @@ public class Car implements java.io.Serializable {
 
 	public void setBills(Set<Bill> bills) {
 		this.bills = bills;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "car")
+	public Set<ScheduleControl> getScheduleControls() {
+		return this.scheduleControls;
+	}
+
+	public void setScheduleControls(Set<ScheduleControl> scheduleControls) {
+		this.scheduleControls = scheduleControls;
 	}
 
 }

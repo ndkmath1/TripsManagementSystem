@@ -165,7 +165,7 @@
 													placeholder=" dd/mm/yyyy"
 													class="form-control date-readonly" value="${nextDate}" readonly=""
 													type="text" data-provide="datepicker"
-													data-date-format="dd/mm/yyyy">
+													data-date-format="dd/mm/yyyy" style="cursor: pointer">
 											</div>
 										</div>
 									</div>
