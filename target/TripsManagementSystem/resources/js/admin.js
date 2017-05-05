@@ -47,6 +47,19 @@ $(function () {
     // for (var i = 0; i < 15; ++i) {
     //     $("tbody").append(str);
     // }
+    var v = true;
+    $(".toggle-open").on("click", function () {
+        //alert("clicked");
+        if (v) {
+            $("#left-nav").css("width", "17.7%");
+            $("#main-content").css("margin-left", "17.7%");
+            v = false;
+        } else {
+            $("#left-nav").css("width", "0");
+            $("#main-content").css("margin-left", "0");
+            v = true;
+        }
+    });
 
 });
 

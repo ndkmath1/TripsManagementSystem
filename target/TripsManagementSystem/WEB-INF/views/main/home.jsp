@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.trips.util.DateTimeUtils"%>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -45,7 +46,7 @@
 		<div id="loader"></div>
 	</div>
 	<div class="wrapper" style="display: none;">
-		<%@ include file="../common/header.jsp" %>
+		<%@ include file="../common/header.jsp"%>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-7">
@@ -162,9 +163,9 @@
 												<!--<i class="fa fa-clock-o text-primary"></i>-->
 												<input id="select-date" name="selectDate"
 													placeholder=" dd/mm/yyyy"
-													class="form-control date-readonly" value="16/04/2017"
-													readonly="" type="text" data-provide="datepicker"
-													data-date-format="dd/mm/yyyy">
+													class="form-control date-readonly" value="${nextDate}" readonly=""
+													type="text" data-provide="datepicker"
+													data-date-format="dd/mm/yyyy" style="cursor: pointer">
 											</div>
 										</div>
 									</div>
@@ -236,6 +237,6 @@
 				</div>
 			</div>
 		</div>
-		<%@ include file="../common/footer.jsp" %>
+		<%@ include file="../common/footer.jsp"%>
 	</div>
 </body>

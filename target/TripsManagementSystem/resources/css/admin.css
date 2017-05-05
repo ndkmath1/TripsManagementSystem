@@ -37,6 +37,10 @@ body {
     width: 0;
 }
 
+.toggle-open {
+	cursor: pointer;
+}
+
 .sidenav {
     height: 100%;
     width: 0;
