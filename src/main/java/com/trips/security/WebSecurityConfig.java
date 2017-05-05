@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// http.csrf().disable();
 		
-		http.authorizeRequests().antMatchers("/", "/login").permitAll();
+//		http.authorizeRequests().antMatchers("/", "/login").permitAll(); 
 		http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
 		http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 		http.authorizeRequests().and().formLogin().loginPage("/login").defaultSuccessUrl("/admin")
