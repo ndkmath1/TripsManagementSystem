@@ -36,6 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+        //Mixing http and https
 		
 //		http.csrf().disable();
 		http.authorizeRequests().antMatchers("/", "/login").permitAll();
@@ -48,6 +49,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("username")
 				.passwordParameter("password")
 				.and().logout().logoutSuccessUrl("/");
+		
+//		http.requiresChannel().antMatchers("/login").requiresSecure();
+//		http.requiresChannel().anyRequest().requiresInsecure();
+//		http.requiresChannel().anyRequest().requiresSecure();
 
 		// http.authorizeRequests().antMatchers("/login",
 		// "/").permitAll().antMatchers("/admin/**").hasRole("ADMIN")

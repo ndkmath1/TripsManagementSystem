@@ -24,3 +24,6 @@
 0:0:0:0:0:0:0:1 - - [05/May/2017:13:29:14 +0700] "GET /TripsManagementSystem/resources/images/profile.jpg HTTP/1.1" 200 4077 http-bio-8080-exec-7 30
 0:0:0:0:0:0:0:1 - - [05/May/2017:13:29:14 +0700] "GET /css/animated-menu-icon.css HTTP/1.1" 404 - http-bio-8080-exec-9 0
 0:0:0:0:0:0:0:1 - - [05/May/2017:13:29:14 +0700] "GET /icon/ic_title1.png HTTP/1.1" 404 - http-bio-8080-exec-9 0
+0:0:0:0:0:0:0:1 - - [05/May/2017:17:18:41 +0700] "GET /TripsManagementSystem/login HTTP/1.1" 200 5509 http-bio-8080-exec-1 443
+0:0:0:0:0:0:0:1 - - [05/May/2017:17:18:41 +0700] "GET /TripsManagementSystem/resources/css/common.css HTTP/1.1" 304 - http-bio-8080-exec-7 31
+0:0:0:0:0:0:0:1 - - [05/May/2017:17:18:41 +0700] "GET /TripsManagementSystem/resources/css/home.css HTTP/1.1" 304 - http-bio-8080-exec-2 134
