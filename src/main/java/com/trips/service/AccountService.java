@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.trips.entity.Account;
 import com.trips.model.AccountForm;
+import com.trips.util.PaginationUtil;
 
 public interface AccountService {
 	
@@ -20,5 +21,7 @@ public interface AccountService {
     void delete(int id);
     
     void saveAccountFromForm(AccountForm accountForm);
+    
+    public PaginationUtil<Account> pagingAccount(int currentPage);
 	
 }

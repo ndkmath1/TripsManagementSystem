@@ -18,7 +18,7 @@ public class LoginController {
 	
 	@GetMapping("/admin")
 	public ModelAndView admin() {
-		return new ModelAndView("forward:/admin/account/list");
+		return new ModelAndView("redirect:/admin/account/list");
 	}
 	
 	@GetMapping("/accessDenied")

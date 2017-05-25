@@ -29,7 +29,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 		System.out.println("### onApplicationEvent");
 //		insertAccount("ndkmath1@gmail.com", "123456", "Khanh Nguyen", "0123 456 789", "1 Đại Cồ Việt, Hai Bà Trưng");
 //		insertAccount("admin@gmail.com", "123456", "Admin", "0978 098 098", "100 Giải Phóng, Hai Bà Trưng");
-//		for (int i = 0; i < 20; ++i) {
+//		for (int i = 0; i < 100; ++i) {
 //			insertAccount(df.getEmailAddress(), df.getRandomChars(6, 10), df.getName(), df.getNumberText(10), df.getAddress());
 //		}
 	}

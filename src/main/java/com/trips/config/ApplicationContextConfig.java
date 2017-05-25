@@ -85,6 +85,7 @@ public class ApplicationContextConfig {
 
 	@Autowired
 	@Bean
+	@Primary
 	@Qualifier(value = "hibernateTransactionManager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
@@ -111,7 +112,7 @@ public class ApplicationContextConfig {
 
 	@Autowired
 	@Bean
-	@Primary
+//	@Primary
 	@Qualifier(value = "jpaTransactionManager")
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 		JpaTransactionManager txManager = new JpaTransactionManager();

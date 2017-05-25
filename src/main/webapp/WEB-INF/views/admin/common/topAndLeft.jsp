@@ -23,11 +23,11 @@
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
 		</form>
-		<script>
+		<%-- <script>
 			function formSubmit() {
 				document.getElementById("logoutForm").submit();
 			}
-		</script>
+		</script> --%>
 
 		<ul class="admin-content shadow">
 			<li><a href="#"> <span>Profile</span>
@@ -38,7 +38,7 @@
 			<li><a href="#"> <span>Help</span>
 			</a></li>
 			<c:if test="${pageContext.request.userPrincipal.name != null}">
-				<li><a href="javascript:formSubmit()"> <span>Logout</span>
+				<li id="logout"><a href="#"> <span>Logout</span>
 						<span class="glyphicon glyphicon-log-out pull-right"></span>
 				</a></li>
 			</c:if>
@@ -106,7 +106,7 @@
 						class="glyphicon glyphicon-chevron-down gl-right"></span>
 				</div>
 				<ul class="child-menu">
-					<li class=""><a href="#">Danh sách tài xế</a></li>
+					<li class=""><a href="<c:url value="/admin/car/list" />">Danh sách tài xế</a></li>
 					<li><a href="#">Dashboard 1</a></li>
 					<li><a href="#">Dashboard 1</a></li>
 				</ul>
@@ -117,7 +117,7 @@
 						class="glyphicon glyphicon-chevron-down gl-right"></span>
 				</div>
 				<ul class="child-menu">
-					<li class=""><a href="#">Danh sách xe</a></li>
+					<li class=""><a href="<c:url value="/admin/car/list" />">Danh sách xe</a></li>
 					<li><a href="#">Dashboard 1</a></li>
 					<li><a href="#">Dashboard 1</a></li>
 					<li><a href="#">Dashboard 1</a></li>

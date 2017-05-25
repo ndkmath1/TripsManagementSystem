@@ -7,10 +7,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.trips.dao.AccountDao;
 import com.trips.entity.Account;
 import com.trips.model.AccountForm;
 import com.trips.repository.AccountRepository;
 import com.trips.service.AccountService;
+import com.trips.util.PaginationUtil;
 
 @Service
 @Transactional(value = "jpaTransactionManager")
@@ -21,6 +23,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private AccountRepository accountRepository;
+	
+	@Autowired
+	private AccountDao accountDao;
 
 	@Autowired
 	private PasswordEncoder pwdEncoder;
@@ -67,6 +72,12 @@ public class AccountServiceImpl implements AccountService {
 	public AccountForm findAccountForm(int id) {
 		Account account = accountRepository.findOne(id);
 		return new AccountForm(account);
+	}
+
+	@Transactional("hibernateTransactionManager")
+	@Override
+	public PaginationUtil<Account> pagingAccount(int currentPage) {
+		return new PaginationUtil<Account>(accountDao.getQueryAccountList(), currentPage);
 	}
 
 }

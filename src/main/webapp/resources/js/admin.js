@@ -60,6 +60,18 @@ $(function () {
             v = true;
         }
     });
+    
+    $("#logout").on("click", function () {
+    	$("#logoutForm").submit();
+    });
+    
+//    $(".confirmation").on("click", function () {
+//        return confirm('Are you sure?');
+//    });
+//    
+//    function myConfirm(a) {
+//    	return confirm(a);
+//    }
 
 });
 

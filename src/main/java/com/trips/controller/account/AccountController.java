@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.trips.entity.Account;
 import com.trips.model.AccountForm;
 import com.trips.service.AccountService;
+import com.trips.util.PaginationUtil;
 import com.trips.validator.AccountValidator;
 
 @Controller
@@ -40,11 +42,32 @@ public class AccountController {
 		}
 	}
 
-	@GetMapping(value = "/list")
-	public String index(Model model) {
-		model.addAttribute("accountList", accountService.findAll());
-		return "admin/account/list";
-	}
+//	@GetMapping(value = "/list")
+//	public String index(Model model) {
+//		model.addAttribute("accountList", accountService.findAll());
+//		return "admin/account/list";
+//	}
+	
+	@GetMapping("/list")
+    public String list(Model model, @RequestParam(value = "page", defaultValue = "1") String page) {
+        int currentPage = 1;
+        String redirectUrl = "redirect:/admin/account/list?page=1";
+        try {
+            currentPage = Integer.parseInt(page);
+        } catch (Exception e) {
+            return redirectUrl;
+        }
+        if (currentPage <= 0) {
+            return redirectUrl;
+        }
+        PaginationUtil<Account> paging = accountService.pagingAccount(currentPage);
+        if (!paging.isFound()) {
+            return redirectUrl;
+        } else {
+            model.addAttribute("paging", paging);
+            return "admin/account/list";
+        }
+    }
 	
 	private String formAccount(Model model, AccountForm account) {
 		model.addAttribute("accountForm", account);

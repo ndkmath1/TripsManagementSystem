@@ -5,53 +5,9 @@
 <html lang="vi">
 <head>
 <title>Trips Management System - Admin Page</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link href="http://mottie.github.io/tablesorter/css/theme.default.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://mottie.github.io/tablesorter/css/theme.blue.css">
-<script
-	src="https://mottie.github.io/tablesorter/js/jquery.tablesorter.js"></script>
-<script
-	src="https://mottie.github.io/tablesorter/js/widgets/widget-storage.js"></script>
-<script
-	src="https://mottie.github.io/tablesorter/js/widgets/widget-filter.js"></script>
-<link rel="stylesheet"
-	href="https://mottie.github.io/tablesorter/css/theme.blue.css">
-<script
-	src="${pageContext.request.contextPath}/resources/js/admin.tablesorter.js"></script>
-<!-- HTML includes are done by JavaScript -->
-<script src="http://www.w3schools.com/lib/w3data.js"></script>
-<!-- Add my css -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/common.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/admin.css">
-<link rel="stylesheet" href="../../css/animated-menu-icon.css">
-<!-- Add icon for title page -->
-<link rel="shortcut icon" type="image/png"
-	href="../../icon/ic_title1.png">
-<!-- fullscreen mode -->
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery.fullscreen-min.js"></script>
-<script>
-	$(function() {
-		$("#success-msg").delay(2000).slideUp(1000);
-	});
-</script>
+<%@ include file="../common/head.jsp"%>
 </head>
 <body>
-
 	<%@ include file="../common/topAndLeft.jsp"%>
 
 	<div id="main-content">
@@ -64,7 +20,8 @@
 							<span id="creator-subheader-item-count" class="badge-creator">100</span>
 						</div>
 						<div class="creator-subheader-controls">
-							<form action="<c:url value="/admin/account/search"/>" method="GET">
+							<form action="<c:url value="/admin/account/search"/>"
+								method="GET">
 								<div class="input-group">
 									<input id="search-text" type="text"
 										class="form-control clear-border-radius" name="q"
@@ -102,7 +59,7 @@
 					<table class="table table-hover tablesorter" id="myTable">
 						<thead>
 							<tr>
-							<!--  
+								<!--  
 								<th><input type="checkbox" name="select-all" value="">
 									<div class="btn-group">
 										<button type="button" class="btn btn-default select-action">Action</button>
@@ -126,58 +83,84 @@
 							</tr>
 						</thead>
 						<tbody>
-							<!--<tr class="filters">-->
-							<!--<th><input type="text" class="form-control" placeholder="Action" disabled></th>-->
-							<!--<th><input type="text" class="form-control" placeholder="#" ></th>-->
-							<!--<th><input type="text" class="form-control" placeholder="Picture" disabled></th>-->
-							<!--<th><input type="text" class="form-control" placeholder="Firstname"></th>-->
-							<!--<th><input type="text" class="form-control" placeholder="Lastname" ></th>-->
-							<!--<th><input type="text" class="form-control" placeholder="Email" ></th>-->
-							<!--<th><input type="text" class="form-control" placeholder="Address"></th>-->
-
-							<c:if test="${empty requestScope.accountList}">
-								<h3>Danh sách tài khoản rỗng</h3>
-							</c:if>
-							<c:if test="${not empty requestScope.accountList}">
-								<c:set var="count" value="0" scope="page" />
-								<c:forEach items="${requestScope.accountList}" var="account">
-									<tr>
-										<!--  
-										<td><input type="checkbox" name="selected[]" value="">
-											<div class="btn-group">
-												<button type="button" class="btn btn-default select-action">Action</button>
-												<button type="button"
-													class="btn btn-default dropdown-toggle caret-action"
-													data-toggle="dropdown">
-													<span class="caret"></span>
-												</button>
-												<ul class="dropdown-menu" role="menu">
-													<li><a href="javascript:void(0)">Delete</a></li>
-													<li><a href="user-detail.html">View Detail</a></li>
-												</ul>
-											</div></td>-->
-										<c:set var="count" value="${count + 1}" scope="page" />
-										<td>${count}</td>
-										<td>${account.email}</td>
-										<td>${account.name}</td>
-										<td>${account.phoneNumber}</td>
-										<td>${account.address}</td>
-										<td><a href="<c:url value="/admin/account/${account.accountId}/edit"/>"><span class="glyphicon glyphicon-pencil"></span></a></td>
-										<td><a href="<c:url value="/admin/account/${account.accountId}/delete"/>"><span class="glyphicon glyphicon-trash"></span></a></td>
-									</tr>
-								</c:forEach>
-							</c:if>
+							<c:choose>
+								<c:when test="${empty requestScope.paging}">
+									<h3>Danh sách tài khoản rỗng</h3>
+								</c:when>
+								<c:otherwise>
+									<c:if test="${not empty param.page}">
+										<c:set var="count"
+											value="${(param.page - 1) * (paging.maxRecordPerPage)}"
+											scope="page" />
+									</c:if>
+									<c:if test="${empty param.page}">
+										<c:set var="count" value="${0}" scope="page" />
+									</c:if>
+									<c:forEach items="${requestScope.paging.resultList}"
+										var="resultList">
+										<tr>
+											<c:set var="count" value="${count + 1}" />
+											<td>${count}</td>
+											<td>${resultList.email}</td>
+											<td>${resultList.name}</td>
+											<td>${resultList.phoneNumber}</td>
+											<td>${resultList.address}</td>
+											<td><a
+												href="<c:url value="/admin/account/${resultList.accountId}/edit"/>"><span
+													class="glyphicon glyphicon-pencil"></span></a></td>
+											<td><a
+												href="<c:url value="/admin/account/${resultList.accountId}/delete"/>"
+												onclick="return confirm('Bạn muốn xóa tài khoản có id là ${account.accountId}')"><span
+													class="glyphicon glyphicon-trash"></span></a></td>
+										</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 						</tbody>
 					</table>
-					<div>
-						<ul class="pagination pull-right">
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li class="disabled"><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-						</ul>
+					
+					<div class="pull-right">
+						<div class="pagination">
+							<c:if test="${not empty param.page}">
+								<c:set var="currentPage" value="${param.page}" />
+							</c:if>
+							<c:if test="${empty param.page}">
+								<c:set var="currentPage" value="${1}" />
+							</c:if>
+							<c:set var="baseUrl" value="/admin/account/list" />
+							<c:if test="${currentPage > 1}">
+								<c:url var="firstPageUrl" value="${baseUrl}">
+									<c:param name="page" value="1" />
+								</c:url>
+								<a href="${firstPageUrl}">Đầu</a>
+								<c:url var="previousPageUrl" value="${baseUrl}">
+									<c:param name="page" value="${currentPage - 1}" />
+								</c:url>
+								<a href="${previousPageUrl}">&laquo;</a>
+							</c:if>
+
+							<c:forEach items="${paging.indexPageList}" var="indexPage">
+								<c:url var="currentUrl" value="${baseUrl}">
+									<c:param name="page" value="${indexPage}" />
+								</c:url>
+								<a href="${currentUrl}"
+									class="${indexPage == currentPage ? 'active' : ''}">${indexPage}</a>
+							</c:forEach>
+
+							<c:set var="lastPage" value="${paging.totalPage}" />
+							<c:if test="${currentPage < lastPage}">
+								<c:url var="lastPageUrl" value="${baseUrl}">
+									<c:param name="page" value="${lastPage}" />
+								</c:url>
+								<c:url var="nextPageUrl" value="${baseUrl}">
+									<c:param name="page" value="${currentPage + 1}" />
+								</c:url>
+								<a href="${nextPageUrl}">&raquo;</a>
+								<a href="${lastPageUrl}">Cuối</a>
+							</c:if>
+						</div>
 					</div>
+					
 				</div>
 			</div>
 		</div>
